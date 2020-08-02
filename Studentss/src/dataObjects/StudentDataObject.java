@@ -2,40 +2,48 @@ package dataObjects;
 
 public class StudentDataObject {
 
-	private int jmbag;
-	private String ime;
-	private String prezime;
-	private int ocjena;
+	private String jmbag;
+	private String name;
+	private String surname;
+	private int grade;
 	
-	public int getJmbag() {
+	public StudentDataObject(String jmbag, String name, String surname, int grade) {
+		super();
+		this.jmbag = jmbag;
+		this.name = name;
+		this.surname = surname;
+		this.grade = grade;
+	}
+	
+	public String getJmbag() {
 		return jmbag;
 	}
-	public void setJmbag(int jmbag) {
+	public void setJmbag(String jmbag) {
 		this.jmbag = jmbag;
 	}
-	public String getIme() {
-		return ime;
+	public String getName() {
+		return name;
 	}
-	public void setIme(String ime) {
-		this.ime = ime;
+	public void setName (String name) {
+		this.name = name;
 	}
-	public String getPrezime() {
-		return prezime;
+	public String getSurname() {
+		return surname;
 	}
-	public void setPrezime(String prezime) {
-		this.prezime = prezime;
+	public void setSurname(String surname) {
+		this.surname = surname;
 	}
-	public int getOcjena() {
-		return ocjena;
+	public int getGrade() {
+		return grade;
 	}
-	public void setOcjena(int ocjena) {
-		this.ocjena = ocjena;
+	public void setGrade(int grade) {
+		this.grade = grade;
 	}
 	
 	
 	@Override
 	public String toString() {
-		return "{jmbag: " + jmbag + ", ime: " + ime + ", prezime: " + prezime + ", ocjena: " + ocjena
+		return "{jmbag: " + jmbag + ", name: " + name + ", surname: " + surname + ", grade: " + grade
 				+ "}";
 	}
 }
