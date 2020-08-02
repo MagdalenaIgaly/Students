@@ -9,6 +9,8 @@ import java.util.List;
 import csv.CsvOperations;
 import dataObjects.StudentDataObject;
 import service.Create;
+import service.Filter;
+import service.Read;
 
 public class Demo {
 	
@@ -27,9 +29,9 @@ public class Demo {
 		printStudents(listOfStudents);
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String command = (br.readLine()).trim().toLowerCase();
+		String command = (br.readLine()).trim();
 
-		while (!"exit".equals(command)) {
+		while (!"exit".equalsIgnoreCase(command)) {
 			String[] commandAsArray = command.split("\\s+");
 			
 //		for (String s : commandAsArray) {
@@ -48,7 +50,7 @@ public class Demo {
 //		KRAJ
 		
 		br = new BufferedReader(new InputStreamReader(System.in));
-		command = (br.readLine()).trim().toLowerCase();
+		command = (br.readLine()).trim();
 		}		
 	}
 
@@ -71,21 +73,25 @@ public class Demo {
 		switch(commandAsArray[0].toLowerCase()) {
 		case "create":
 			Create create = new Create();
-			StudentDataObject student = create.createAndAddNewStudent(commandAsArray, listOfStudents);
+			StudentDataObject newStudent = create.createAndAddNewStudent(commandAsArray, listOfStudents);
 			
-			if (student != null) {
-				csvOperations.writeNewStudentIntoFile(student, filePath);
+			if (newStudent != null) {
+				csvOperations.writeNewStudentIntoFile(newStudent, filePath);
 			}
 			break;
 		
 		case "read":
-			// code block
+			Read read = new Read();
+			read.fetchAndPrintStudentByJmbag(commandAsArray, listOfStudents);
+			
 			break;
 		
 		case "filter-grade":
+			Filter filterGrade = new Filter();
 			break;
 
 		case "filter-name":
+			Filter filterName = new Filter();
 			break;
 		
 //		cade default:
