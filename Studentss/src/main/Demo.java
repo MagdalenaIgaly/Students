@@ -1,6 +1,7 @@
 package main;
 
 import java.io.BufferedReader;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
@@ -21,7 +22,19 @@ public class Demo {
 		String FILE_PATH = "C:/Users/User/git/Students/Studentss/src/students.csv";
 		
 		List<StudentDataObject> listOfStudents = new ArrayList<StudentDataObject>();
-		listOfStudents = csvOperations.readStudentsFromFile(FILE_PATH);
+		
+		try {
+			listOfStudents = csvOperations.readStudentsFromFile(FILE_PATH);
+			
+		} catch (FileNotFoundException fnfe) {
+			System.out.println("File with the specified pathname does not exist!");
+			return;
+		
+		} catch (IOException ioe) {
+			ioe.printStackTrace();
+			return;
+		}
+		
 		
 		System.out.println("Welcome, dear user...\r\n" + "List of Students has been successfully loaded!\n");
 
@@ -48,6 +61,8 @@ public class Demo {
 		listOfStudents = csvOperations.readStudentsFromFile("C:/Users/User/git/Students/Studentss/src/students.csv");
 		printStudents(listOfStudents);
 //		KRAJ
+		
+		System.out.println();
 		
 		br = new BufferedReader(new InputStreamReader(System.in));
 		command = (br.readLine()).trim();
@@ -88,6 +103,8 @@ public class Demo {
 		
 		case "filter-grade":
 			Filter filterGrade = new Filter();
+			filterGrade.filterStudentsByGrade(commandAsArray, listOfStudents);
+			
 			break;
 
 		case "filter-name":

@@ -5,9 +5,9 @@ public class StudentDataObject {
 	private String jmbag;
 	private String name;
 	private String surname;
-	private int grade;
+	private String grade;
 	
-	public StudentDataObject(String jmbag, String name, String surname, int grade) {
+	public StudentDataObject(String jmbag, String name, String surname, String grade) {
 		super();
 		this.jmbag = jmbag;
 		this.name = name;
@@ -33,10 +33,10 @@ public class StudentDataObject {
 	public void setSurname(String surname) {
 		this.surname = surname;
 	}
-	public int getGrade() {
+	public String getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
+	public void setGrade(String grade) {
 		this.grade = grade;
 	}
 	

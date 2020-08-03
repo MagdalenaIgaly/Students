@@ -23,7 +23,7 @@ public class Create {
 		String jmbag = commandAsArray[1];
 		String name = commandAsArray[2];
 		String surname = commandAsArray[3];
-		int grade = Integer.parseInt(commandAsArray[4]);
+		String grade = commandAsArray[4];
 		
 		StudentDataObject student = new StudentDataObject(jmbag, name, surname, grade);
 		
@@ -52,14 +52,14 @@ public class Create {
 		String jmbag = commandAsArray[1];
 		String name = commandAsArray[2];
 		String surname = commandAsArray[3];
-		int grade = Integer.parseInt(commandAsArray[4]);
+		String grade = commandAsArray[4];
 
 		
 		if (!argCheck.isJmbagUnique(jmbag, listOfStudents)    //The Student with given jmbag already exist
-				|| !argCheck.isDigitsOnly(jmbag)              //Jmbag contains non-digit symbol
-				|| !argCheck.isNameWord(name)                 //Name is not word
-				|| !argCheck.isSurnameWord(surname)           //Surname is not word
-				|| !argCheck.isGradeInRange(grade)){          //Grade is out of range [1, 5]
+				| !argCheck.isDigitsOnly(jmbag)              //Jmbag contains non-digit symbol
+				| !argCheck.isNameWord(name)                 //Name is not word
+				| !argCheck.isSurnameWord(surname)           //Surname is not word
+				| !argCheck.isGradeInRange(grade)){          //Grade is out of range [1, 5]
 			
 			return false;
 		

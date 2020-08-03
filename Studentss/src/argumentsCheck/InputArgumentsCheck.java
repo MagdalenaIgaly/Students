@@ -9,7 +9,7 @@ public class InputArgumentsCheck {
 	
 	public boolean isNumberOfInputArgsCorrect (String[] commandAsArray, int numberOfArgs, String correctForm) {
 		if (commandAsArray.length != numberOfArgs) {
-			System.out.println("Wrong number of input arguments! \n"
+			System.out.println("\nWrong number of input arguments! \n"
 					+ "Please enter the command in the following form: " + correctForm);
 			return false;
 		
@@ -20,17 +20,22 @@ public class InputArgumentsCheck {
 	
 	
 	public boolean isDigitsOnly(String jmbag) {
-		if (!jmbag.matches("[0-9]+")) {
-			System.out.println("Jmbag can contains digits only!");
-			return false;
 		
-		} else {
-			return true;
+		boolean isDigitsOnly = true;
+		
+		if (!jmbag.matches("[0-9]+")) {
+			System.out.println("\nJmbag can contains digits only!");
+			isDigitsOnly = false;
 		}
+		
+		return isDigitsOnly;
+		
 	}
 	
 	
-	public boolean isJmbagUnique(String jmbag, List<StudentDataObject> listOfStudents) {
+	public boolean isJmbagUnique (String jmbag, List<StudentDataObject> listOfStudents) {
+		boolean isJmbagUnique = true;
+		
 		List<String> listOfJmbags = new ArrayList<String>(); 
 
 		for (StudentDataObject s : listOfStudents) {
@@ -38,47 +43,75 @@ public class InputArgumentsCheck {
 		}
 
 		if (listOfJmbags.contains(jmbag)) {
-			System.out.println("The Student with given jmbag already exist! Please write different jmbag.");
+			System.out.println("\nThe Student with given jmbag already exist! Please write different jmbag.");
 
-			return false;
+			isJmbagUnique = false;
+		} 
 		
-		} else {
-			return true;
-		}
+		return isJmbagUnique;
 	}
 	
 
 	
-	public boolean isNameWord(String name) {
+	public boolean isNameWord (String name) {
+		boolean isNameWord = true;
+		
 		if (!name.matches("[a-zA-Z]+")) {
-			System.out.println("Name can contains letters only!");
+			System.out.println("\nName can contains letters only!");
 			
-			return false;
-		
-		} else {
-			return true;
+			isNameWord = false;
 		}
+		
+		return isNameWord;
 	}
 	
-	public boolean isSurnameWord(String surname) {
+	public boolean isSurnameWord (String surname) {
+		boolean isSurnameWord = true;
+		
 		if (!surname.matches("[a-zA-Z]+")) {
-			System.out.println("Surname can contains letters only!");
+			System.out.println("\nSurname can contains letters only!");
 
-			return false;
-		
-		} else {
-			return true;
-		}
+			isSurnameWord = false;
+		} 
+
+		return isSurnameWord;
 	}
 	
-	public boolean isGradeInRange(int grade) {
-		if (grade > 5 || grade < 1) {
-			System.out.println("Grade must be between 1 and 5, included.");
-			
-			return false;
+	public boolean isGradeInRange (String grade) {
+		boolean isGradeInRange = true;
 		
-		} else {
-			return true;
+		int intValueOfGrade;
+		
+		try {
+			intValueOfGrade = Integer.parseInt(grade);
+		
+		} catch (NumberFormatException nfe) {
+			System.out.println("\nGrade must be NUMBER between 1 and 5, included.");
+			isGradeInRange = false;
+			
+			return isGradeInRange;
 		}
+		
+		
+		if (intValueOfGrade > 5 || intValueOfGrade < 1) {
+			System.out.println("\nGrade must be between 1 and 5, included.");
+			isGradeInRange = false;
+		
+		} 
+		
+		return isGradeInRange;
+	}
+	
+	
+	public boolean isRelationExist (String relation) {
+		boolean isRelationExist = false;
+		
+		if (!relation.toLowerCase().matches("[lge]")) {
+			System.out.println("\nGiven relation does not exist!\n"
+					+ "Please write: l for lower, g for greater or e for equal.");			
+			isRelationExist = false;
+		} 
+		
+		return isRelationExist;
 	}
 }
