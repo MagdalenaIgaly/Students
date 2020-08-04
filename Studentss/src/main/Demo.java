@@ -16,7 +16,7 @@ import service.Read;
 public class Demo {
 	
 	private static CsvOperations csvOperations = new CsvOperations();
-
+	
 	public static void main(String[] args) throws IOException {
 //		String FILE_PATH = args[0];
 		String FILE_PATH = "C:/Users/User/git/Students/Studentss/src/students.csv";
@@ -27,7 +27,7 @@ public class Demo {
 			listOfStudents = csvOperations.readStudentsFromFile(FILE_PATH);
 			
 		} catch (FileNotFoundException fnfe) {
-			System.out.println("File with the specified pathname does not exist!");
+			System.out.println("File with the specified pathname does not exist!\n");
 			return;
 		
 		} catch (IOException ioe) {
@@ -42,16 +42,16 @@ public class Demo {
 		printStudents(listOfStudents);
 		
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-		String command = (br.readLine()).trim();
+		String input = (br.readLine()).trim();
 
-		while (!"exit".equalsIgnoreCase(command)) {
-			String[] commandAsArray = command.split("\\s+");
+		while (!"exit".equalsIgnoreCase(input)) {
+			String[] inputAsArray = input.split("\\s+");
 			
 //		for (String s : commandAsArray) {
 //			System.out.println("s = " + s);
 //		}
 			
-		executeGivenCommand(commandAsArray, listOfStudents, FILE_PATH);
+		executeGivenCommand(inputAsArray, listOfStudents, FILE_PATH);
 		
 //		POCETAK - samo provjera, makni poslije
 		System.out.println("FROM LIST:");
@@ -65,7 +65,7 @@ public class Demo {
 		System.out.println();
 		
 		br = new BufferedReader(new InputStreamReader(System.in));
-		command = (br.readLine()).trim();
+		input = (br.readLine()).trim();
 		}		
 	}
 
@@ -98,23 +98,26 @@ public class Demo {
 		case "read":
 			Read read = new Read();
 			read.fetchAndPrintStudentByJmbag(commandAsArray, listOfStudents);
-			
 			break;
 		
 		case "filter-grade":
 			Filter filterGrade = new Filter();
 			filterGrade.filterStudentsByGrade(commandAsArray, listOfStudents);
-			
 			break;
 
 		case "filter-name":
 			Filter filterName = new Filter();
+			filterName.filterStudentsByName(commandAsArray, listOfStudents);
 			break;
 		
-//		cade default:
-//			nabroji sve naredbe koje je moguce koristiti
+		default:
+			System.out.println("\nUnsupported command !"
+					+ "\nPlease write one of the following forms:"
+					+ "\n\ncreate jmbag name surname grade                        ->   CREATE NEW STUDENT"
+					+ "\nread jmbag                                               ->   READ BY JMBAG"
+					+ "\nfilter-grade {l,g,e} grade                               ->   FILTER BY GRADE"
+					+ "\nfilter-name initial {-l,-u}, where {-l,-u} is optional   ->   FILTER BY NAME"
+					+ "\nexit                                                     ->   EXIT");
 		}
-		
-		
 	}
 }

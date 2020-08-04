@@ -7,10 +7,8 @@ import dataObjects.StudentDataObject;
 
 public class InputArgumentsCheck {
 	
-	public boolean isNumberOfInputArgsCorrect (String[] commandAsArray, int numberOfArgs, String correctForm) {
-		if (commandAsArray.length != numberOfArgs) {
-			System.out.println("\nWrong number of input arguments! \n"
-					+ "Please enter the command in the following form: " + correctForm);
+	public boolean isNumberOfInputArgsCorrect (String[] inputAsArray, int numberOfArgs) {
+		if (inputAsArray.length != numberOfArgs) {
 			return false;
 		
 		} else {
@@ -104,7 +102,7 @@ public class InputArgumentsCheck {
 	
 	
 	public boolean isRelationExist (String relation) {
-		boolean isRelationExist = false;
+		boolean isRelationExist = true;
 		
 		if (!relation.toLowerCase().matches("[lge]")) {
 			System.out.println("\nGiven relation does not exist!\n"
@@ -113,5 +111,31 @@ public class InputArgumentsCheck {
 		} 
 		
 		return isRelationExist;
+	}
+	
+	public boolean isInitialSymbolLetter (String initial) {
+		boolean isInitialLetter = true;
+		
+		if (!initial.toLowerCase().matches("[a-zA-Z]{1}")) {
+			System.out.println("\nInitial must be (one) letter!");			
+			isInitialLetter = false;
+		} 
+		
+		return isInitialLetter;
+	}
+	
+	public boolean isFontExist (String font) {
+		boolean isFontExist = true;
+		
+		if (!"-u".equalsIgnoreCase(font)
+				&&	!"-l".equalsIgnoreCase(font)) {
+			
+			System.out.println("\nGiven font does not exist!\n"
+					+ "Please write: -l for lower case or -u for upper case.");			
+			
+			isFontExist = false;
+		} 
+		
+		return isFontExist;
 	}
 }

@@ -1,6 +1,5 @@
 package service;
 
-import java.io.IOException;
 import java.util.List;
 
 import argumentsCheck.InputArgumentsCheck;
@@ -9,21 +8,20 @@ import dataObjects.StudentDataObject;
 public class Create {
 	
 	/**
-	 * @throws IOException 
 	 * 
 	 */
-	public StudentDataObject createAndAddNewStudent(String[] commandAsArray, List<StudentDataObject> listOfStudents) throws IOException {
+	public StudentDataObject createAndAddNewStudent(String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		
 		//Input arguments are not OK - Student will not be created
-		if (!isInputArgsCorrect(commandAsArray, listOfStudents)) {
+		if (!isInputArgsCorrect(inputAsArray, listOfStudents)) {
 			return null;
 		}
 		
 		//All input arguments are OK - new Student can be created
-		String jmbag = commandAsArray[1];
-		String name = commandAsArray[2];
-		String surname = commandAsArray[3];
-		String grade = commandAsArray[4];
+		String jmbag = inputAsArray[1];
+		String name = inputAsArray[2];
+		String surname = inputAsArray[3];
+		String grade = inputAsArray[4];
 		
 		StudentDataObject student = new StudentDataObject(jmbag, name, surname, grade);
 		
@@ -39,23 +37,26 @@ public class Create {
 
 	/////     PRIVATE METHODS     /////
 	
-	private static boolean isInputArgsCorrect (String[] commandAsArray, List<StudentDataObject> listOfStudents) {
+	private static boolean isInputArgsCorrect (String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		
 		InputArgumentsCheck argCheck = new InputArgumentsCheck();
 		
 		//Wrong number of input arguments
-		if (!argCheck.isNumberOfInputArgsCorrect(commandAsArray, 5, "create jmbag name surname grade")) {
+		if (!argCheck.isNumberOfInputArgsCorrect(inputAsArray, 5)) {
+			System.out.println("\nWrong number of input arguments! \n"
+					+ "Please enter the command in the following form: create jmbag name surname grade");
+			
 			return false;
 		}
 
 		//Since all entities are sent, we can fetch their values
-		String jmbag = commandAsArray[1];
-		String name = commandAsArray[2];
-		String surname = commandAsArray[3];
-		String grade = commandAsArray[4];
+		String jmbag = inputAsArray[1];
+		String name = inputAsArray[2];
+		String surname = inputAsArray[3];
+		String grade = inputAsArray[4];
 
 		
-		if (!argCheck.isJmbagUnique(jmbag, listOfStudents)    //The Student with given jmbag already exist
+		if (!argCheck.isJmbagUnique(jmbag, listOfStudents)   //The Student with given jmbag already exist
 				| !argCheck.isDigitsOnly(jmbag)              //Jmbag contains non-digit symbol
 				| !argCheck.isNameWord(name)                 //Name is not word
 				| !argCheck.isSurnameWord(surname)           //Surname is not word
