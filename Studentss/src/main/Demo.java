@@ -15,7 +15,7 @@ import service.Read;
 
 /**
  * Class represents command-line Demo application.
- * Application loads list of Students from file and save them into the database (ArrayList).
+ * Application loads list of Students from file and saves them into the database (ArrayList).
  * Also, it allows different and multiple commands on Students from database.
  * Use "commands" to get list of all supported commands.
  * 
@@ -32,8 +32,7 @@ public class Demo {
 	 * @throws IOException
 	 */
 	public static void main(String[] args) throws IOException {
-//		String filePath = args[0];
-		String filePath = "C:/Users/User/git/Students/Studentss/src/students.csv";
+		String filePath = args[0];
 		
 		List<StudentDataObject> listOfStudents = new ArrayList<StudentDataObject>();
 		
@@ -70,7 +69,7 @@ public class Demo {
 	
 	/////     PRIVATE METHODS     /////
 	
-
+	
 	private static void executeGivenCommand(String[] commandAsArray, List<StudentDataObject> listOfStudents, String filePath) throws IOException {
 		switch(commandAsArray[0].toLowerCase()) {
 		case "create":

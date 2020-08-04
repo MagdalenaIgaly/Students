@@ -34,7 +34,7 @@ public class InputArgumentsCheck {
 		boolean isDigitsOnly = true;
 		
 		if (!string.matches("[0-9]+")) {
-			System.out.println("\n" + string + " contains symbols other than digits!");
+			System.out.println("\nJmbag contains symbols other than digits!");
 			isDigitsOnly = false;
 		}
 		
@@ -108,7 +108,7 @@ public class InputArgumentsCheck {
 	}
 	
 	/**
-	 * Method checks if grade number and if it is between 1 and 5, included.
+	 * Method checks if grade is number between 1 and 5, included.
 	 * 
 	 * @param grade    grade that will be tested
 	 * @return         true if grade is number between 1 and 5, included, false otherwise
@@ -176,7 +176,7 @@ public class InputArgumentsCheck {
 	}
 	
 	/**
-	 * Method checks if given font is one of the following: -u (for upper case), -l (for lowwer case)
+	 * Method checks if given font is one of the following: -u (for upper case), -l (for lower case)
 	 * 
 	 * @param font   font that will be tested
 	 * @return       true if given font exists, false otherwise

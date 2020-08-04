@@ -151,7 +151,7 @@ public class Filter {
 
 	/**
 	 * Method processes command: filter-name arg1 arg2.
-	 * Method prints name and surname of all Students whose name starts with arg1.
+	 * Method prints name and surname of all Students whose name starts with letter given with arg1.
 	 * Argument agr2 is optional and can be -u or -l which indicates that name and surname are printed in lower case or upper case, respectively 
 	 * 
 	 * @param inputAsArray       input command and arguments, separated into Array
