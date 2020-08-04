@@ -7,16 +7,22 @@ import argumentsCheck.InputArgumentsCheck;
 import dataObjects.StudentDataObject;
 
 /**
- * filter-grade arg1 arg2" - ispisuje detalje svih studenata èija je ocjena manja/jednaka/veæa od ocjene dane argumentom arg2,
- *  argument arg1 može biti jedan od 3 moguæih vrijednosti {"l", "g", "e"}, te oznaèava korištenu relaciju (lower, greater ili equal). 
- * @author User
- *
+ * Class contains methods for filtering Students from database
+ * 
+ * @author Magdalena Igaly
  */
-
 public class Filter {
 	
 	private static InputArgumentsCheck argCheck = new InputArgumentsCheck();
 
+	/**
+	 * Method processes command: filter-grade arg1 arg2.
+	 * Method prints details of all Students whose grade is less than / equal to / greater than grade given with arg2.
+	 * Argument agr1 can be one of three possible values {l,g,e} ant it represents relation (less, greater, equal)
+	 * 
+	 * @param inputAsArray       input command and arguments, separated into Array
+	 * @param listOfStudents     list of Students, representing database
+	 */
 	public void filterStudentsByGrade (String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		
 		//Input arguments are not OK - Students will not be filtered
@@ -143,12 +149,13 @@ public class Filter {
 		return intValueOfStudentsGrade;
 	}
 
-	
 	/**
-	 * "filter-name arg1 arg2" - ispisuje ime i prezime svih studenata èije ime poèinje s argumentom arg1, 
+	 * Method processes command: filter-name arg1 arg2.
+	 * Method prints name and surname of all Students whose name starts with arg1.
+	 * Argument agr2 is optional and can be -u or -l which indicates that name and surname are printed in lower case or upper case, respectively 
 	 * 
-	 * argument arg2 je opcionalan te ukoliko je prisutan njegova vrijednost mora biti "-u" ili "-l" 
-	 * te oznaèava da se ime i prezime ispisuje velikim, odnosno malim slovima
+	 * @param inputAsArray       input command and arguments, separated into Array
+	 * @param listOfStudents     list of Students, representing database
 	 */
 	public void filterStudentsByName (String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		//Input arguments are not OK - Students will not be filtered

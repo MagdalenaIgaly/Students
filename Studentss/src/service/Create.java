@@ -5,10 +5,20 @@ import java.util.List;
 import argumentsCheck.InputArgumentsCheck;
 import dataObjects.StudentDataObject;
 
+/**
+ * Class contains methods for creating new Student and inserting it into database.
+ * 
+ * @author Magdalena Igaly
+ */
 public class Create {
 	
 	/**
+	 * If input arguments are valid, method creates new Student and saves it into database.
+	 * Otherwise, message is shown and new Student will not be created.
 	 * 
+	 * @param inputAsArray         input command and arguments, separated into Array
+	 * @param listOfStudents       list of Students, representing database
+	 * @return StudentDataObject   new Student object
 	 */
 	public StudentDataObject createAndAddNewStudent(String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		

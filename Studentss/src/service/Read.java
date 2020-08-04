@@ -5,9 +5,20 @@ import java.util.List;
 import argumentsCheck.InputArgumentsCheck;
 import dataObjects.StudentDataObject;
 
-
+/**
+ * Class contains methods for selecting Students from database.
+ * 
+ * @author Magdalena Igaly
+ */
 public class Read {
 	
+	/**
+	 * Method fetches Student by given jmbag and prints its details.
+	 * If given jmbag does not exist, message is shown.
+	 * 
+	 * @param inputAsArray       input command and arguments, separated into Array
+	 * @param listOfStudents     list of Students, representing database
+	 */
 	public void fetchAndPrintStudentByJmbag(String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		
 		boolean isFetched = false;

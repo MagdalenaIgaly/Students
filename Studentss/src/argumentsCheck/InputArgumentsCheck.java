@@ -7,6 +7,13 @@ import dataObjects.StudentDataObject;
 
 public class InputArgumentsCheck {
 	
+	/**
+	 * Method checks if users input command contains required number of arguments
+	 * 
+	 * @param inputAsArray       users input command, separated into Array
+	 * @param numberOfArgs       required number of arguments for command that has been called from user
+	 * @return                   true if number of arguments is correct, false otherwise
+	 */
 	public boolean isNumberOfInputArgsCorrect (String[] inputAsArray, int numberOfArgs) {
 		if (inputAsArray.length != numberOfArgs) {
 			return false;
@@ -16,13 +23,18 @@ public class InputArgumentsCheck {
 		}
 	}
 	
-	
-	public boolean isDigitsOnly(String jmbag) {
+	/**
+	 * Method checks if given String contains only numbers
+	 * 
+	 * @param string   String that will be tested
+	 * @return         true if given String contains only numbers, false otherwise
+	 */
+	public boolean isDigitsOnly(String string) {
 		
 		boolean isDigitsOnly = true;
 		
-		if (!jmbag.matches("[0-9]+")) {
-			System.out.println("\nJmbag can contains digits only!");
+		if (!string.matches("[0-9]+")) {
+			System.out.println("\n" + string + " contains symbols other than digits!");
 			isDigitsOnly = false;
 		}
 		
@@ -31,6 +43,13 @@ public class InputArgumentsCheck {
 	}
 	
 	
+	/**
+	 * Method checks if given jmbag is unique in database
+	 * 
+	 * @param jmbag              jmbag that will be tested
+	 * @param listOfStudents     list of Students, representing database
+	 * @return                   true if jmbag is unique, false otherwise
+	 */
 	public boolean isJmbagUnique (String jmbag, List<StudentDataObject> listOfStudents) {
 		boolean isJmbagUnique = true;
 		
@@ -50,7 +69,13 @@ public class InputArgumentsCheck {
 	}
 	
 
-	
+	/**
+	 * Method checks if given name contains only letters
+	 * Symbols è, æ, ð, š, ž are also observed as letters.
+	 * 
+	 * @param name    name that will be tested
+	 * @return        true if name contains only letters, false otherwise
+	 */
 	public boolean isNameWord (String name) {
 		boolean isNameWord = true;
 		
@@ -63,6 +88,13 @@ public class InputArgumentsCheck {
 		return isNameWord;
 	}
 	
+	/**
+	 * Method checks if given surname contains only letters
+	 * Symbols è, æ, ð, š, ž are also observed as letters.
+	 * 
+	 * @param surname    surname that will be tested
+	 * @return           true if surname contains only letters, false otherwise
+	 */
 	public boolean isSurnameWord (String surname) {
 		boolean isSurnameWord = true;
 		
@@ -75,6 +107,12 @@ public class InputArgumentsCheck {
 		return isSurnameWord;
 	}
 	
+	/**
+	 * Method checks if grade number and if it is between 1 and 5, included.
+	 * 
+	 * @param grade    grade that will be tested
+	 * @return         true if grade is number between 1 and 5, included, false otherwise
+	 */
 	public boolean isGradeInRange (String grade) {
 		boolean isGradeInRange = true;
 		
@@ -101,6 +139,12 @@ public class InputArgumentsCheck {
 	}
 	
 	
+	/**
+	 * Method checks if given relation is one of the symbols: l (for less), g (for greater), e (for equal)
+	 * 
+	 * @param relation   relation that will be tested
+	 * @return           true if given relation exists, false otherwise
+	 */
 	public boolean isRelationExist (String relation) {
 		boolean isRelationExist = true;
 		
@@ -113,6 +157,13 @@ public class InputArgumentsCheck {
 		return isRelationExist;
 	}
 	
+	/**
+	 * Method checks if given initial is letter.
+	 * Symbols è, æ, ð, š, ž are also observed as letters.
+	 * 
+	 * @param initial    initial that will be tested
+	 * @return           true if given initial is letter, false otherwise
+	 */
 	public boolean isInitialSymbolLetter (String initial) {
 		boolean isInitialLetter = true;
 		
@@ -124,6 +175,12 @@ public class InputArgumentsCheck {
 		return isInitialLetter;
 	}
 	
+	/**
+	 * Method checks if given font is one of the following: -u (for upper case), -l (for lowwer case)
+	 * 
+	 * @param font   font that will be tested
+	 * @return       true if given font exists, false otherwise
+	 */
 	public boolean isFontExist (String font) {
 		boolean isFontExist = true;
 		

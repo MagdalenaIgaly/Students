@@ -12,9 +12,10 @@ import dataObjects.StudentDataObject;
 
 public class CsvOperations {
 	/**
+	 * Method reads all Students from file and saves them into the List that represents database
 	 * 
-	 * @param filePath
-	 * @return
+	 * @param filePath   path to csv file with Students
+	 * @return           list of Students from database
 	 */
 	public List<StudentDataObject> readStudentsFromFile(String filePath) throws FileNotFoundException, IOException {
 		BufferedReader reader = null;
@@ -45,7 +46,13 @@ public class CsvOperations {
 	}
 	
 	
-	
+	/**
+	 * Method adds new Student into the csv file
+	 * 
+	 * @param newStudent     Student that will be added to csv file
+	 * @param filePath       path to csv file with Students
+	 * @throws IOException
+	 */
 	public void writeNewStudentIntoFile(StudentDataObject newStudent, String filePath) throws IOException {
 		
 		FileWriter fileWriter = null;

@@ -1,5 +1,12 @@
 package dataObjects;
 
+/**
+ * Class that represents Student
+ * Every Student has its own unique jmbag, name, surname and grade
+ * 
+ * @author Magdalena Igaly
+ *
+ */
 public class StudentDataObject {
 
 	private String jmbag;

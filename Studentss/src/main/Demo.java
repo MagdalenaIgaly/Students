@@ -13,18 +13,32 @@ import service.Create;
 import service.Filter;
 import service.Read;
 
+/**
+ * Class represents command-line Demo application.
+ * Application loads list of Students from file and save them into the database (ArrayList).
+ * Also, it allows different and multiple commands on Students from database.
+ * Use "commands" to get list of all supported commands.
+ * 
+ * @author Magdalena Igaly
+ */
+
 public class Demo {
 	
 	private static CsvOperations csvOperations = new CsvOperations();
 	
+	/**
+	 * Main method
+	 * @param args     absolute path to csv file with Students that are written in the form: jmbag;name;surname;grade
+	 * @throws IOException
+	 */
 	public static void main(String[] args) throws IOException {
-//		String FILE_PATH = args[0];
-		String FILE_PATH = "C:/Users/User/git/Students/Studentss/src/students.csv";
+//		String filePath = args[0];
+		String filePath = "C:/Users/User/git/Students/Studentss/src/students.csv";
 		
 		List<StudentDataObject> listOfStudents = new ArrayList<StudentDataObject>();
 		
 		try {
-			listOfStudents = csvOperations.readStudentsFromFile(FILE_PATH);
+			listOfStudents = csvOperations.readStudentsFromFile(filePath);
 			
 		} catch (FileNotFoundException fnfe) {
 			System.out.println("File with the specified pathname does not exist!\n");
@@ -44,7 +58,7 @@ public class Demo {
 		while (!"exit".equalsIgnoreCase(input)) {
 			String[] inputAsArray = input.split("\\s+");
 			
-		executeGivenCommand(inputAsArray, listOfStudents, FILE_PATH);
+		executeGivenCommand(inputAsArray, listOfStudents, filePath);
 		
 		System.out.println();
 		
