@@ -50,13 +50,10 @@ public class Read {
 			return false;
 		}
 		
-		//Since jmbag is sent, we can fetch its value
 		String jmbag = inputAsArray[1];
 		
-		//Check if sent jmbag contains some non-digit symbol
 		if (!argCheck.isDigitsOnly(jmbag)) {
 			return false;
-			
 		} else {
 			return true;
 		}

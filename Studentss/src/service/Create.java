@@ -49,13 +49,11 @@ public class Create {
 			return false;
 		}
 
-		//Since all entities are sent, we can fetch their values
 		String jmbag = inputAsArray[1];
 		String name = inputAsArray[2];
 		String surname = inputAsArray[3];
 		String grade = inputAsArray[4];
 
-		
 		if (!argCheck.isJmbagUnique(jmbag, listOfStudents)   //The Student with given jmbag already exist
 				| !argCheck.isDigitsOnly(jmbag)              //Jmbag contains non-digit symbol
 				| !argCheck.isNameWord(name)                 //Name is not word
@@ -68,5 +66,4 @@ public class Create {
 			return true;
 		}
 	}
-
 }

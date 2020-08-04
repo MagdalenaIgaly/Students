@@ -54,7 +54,7 @@ public class InputArgumentsCheck {
 	public boolean isNameWord (String name) {
 		boolean isNameWord = true;
 		
-		if (!name.matches("[a-zA-Z]+")) {
+		if (!name.matches("[a-zA-ZèæðšžÈÆÐŠŽ]+")) {
 			System.out.println("\nName can contains letters only!");
 			
 			isNameWord = false;
@@ -66,7 +66,7 @@ public class InputArgumentsCheck {
 	public boolean isSurnameWord (String surname) {
 		boolean isSurnameWord = true;
 		
-		if (!surname.matches("[a-zA-Z]+")) {
+		if (!surname.matches("[a-zA-ZèæðšžÈÆÐŠŽ]+")) {
 			System.out.println("\nSurname can contains letters only!");
 
 			isSurnameWord = false;
@@ -105,7 +105,7 @@ public class InputArgumentsCheck {
 		boolean isRelationExist = true;
 		
 		if (!relation.toLowerCase().matches("[lge]")) {
-			System.out.println("\nGiven relation does not exist!\n"
+			System.out.println("\nGiven relation '" + relation + "' does not exist!\n"
 					+ "Please write: l for lower, g for greater or e for equal.");			
 			isRelationExist = false;
 		} 
@@ -116,7 +116,7 @@ public class InputArgumentsCheck {
 	public boolean isInitialSymbolLetter (String initial) {
 		boolean isInitialLetter = true;
 		
-		if (!initial.toLowerCase().matches("[a-zA-Z]{1}")) {
+		if (!initial.toLowerCase().matches("[a-zA-ZèæðšžÈÆÐŠŽ]{1}")) {
 			System.out.println("\nInitial must be (one) letter!");			
 			isInitialLetter = false;
 		} 

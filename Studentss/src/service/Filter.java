@@ -28,19 +28,24 @@ public class Filter {
 		String relation = inputAsArray[1].toLowerCase();
 		int intValueOfGivenGrade = Integer.parseInt(inputAsArray[2]);
 
-		//Since the grade can't be less than 1 or greater than 5, empty set is returned 
-		if ( ("l".equals(relation) && intValueOfGivenGrade == 1)
-				|| ("g".equals(relation) && intValueOfGivenGrade == 5)) {
-			
-			System.out.println("{}");
+		//Grade can't be less than 1
+		if ( "l".equals(relation) && intValueOfGivenGrade == 1 ) {
+			System.out.println("\nThere is no Student with grade less than 1.");
+			return;
+		}
+		
+		//Grade can't be greater than 5
+		if ( "g".equals(relation) && intValueOfGivenGrade == 5 ) {
+			System.out.println("\nThere is no Student with grade greater than 5.");
+			return;
 		}
 		
 		if ("l".equals(relation)) {
 			fetchAndPrintLower (listOfStudents, intValueOfGivenGrade);
-
+		
 		} else if ("g".equals(relation)) {
 			fetchAndPrintGreater (listOfStudents, intValueOfGivenGrade);
-
+	
 		} else {
 			fetchAndPrintEqual (listOfStudents, intValueOfGivenGrade);
 		}
@@ -60,7 +65,6 @@ public class Filter {
 			return false;
 		}
 		
-		//Since all arguments are sent, we can fetch their values
 		String relation = inputAsArray[1];
 		String grade = inputAsArray[2];
 		
@@ -68,7 +72,6 @@ public class Filter {
 				| !argCheck.isGradeInRange(grade)){          //Grade is out of range [1, 5]
 			
 			return false;
-		
 		} else {
 			return true;
 		}
@@ -76,71 +79,70 @@ public class Filter {
 	
 	//LOWER
 	private static void fetchAndPrintLower (List<StudentDataObject> listOfStudents, int intValueOfGivenGrade) {
+		int counter = 0;
+		
 		for (StudentDataObject student : listOfStudents) {
-			printIfLower (student, intValueOfGivenGrade);
-		}
-	}
-	
-	private static void printIfLower (StudentDataObject student, int intValueOfGivenGrade) {
-		int intValueOfStudentsGrade;
-
-		try {
-			intValueOfStudentsGrade = Integer.parseInt(student.getGrade());
-		} catch (NumberFormatException nfe) {
-			return;
+			int studentsGrade = getIntFromString (student.getGrade());
+			
+			if (0 < studentsGrade && studentsGrade < intValueOfGivenGrade) {
+				System.out.println(student);
+				counter++;
+			}
 		}
 		
-		if (intValueOfStudentsGrade < intValueOfGivenGrade) {
-			System.out.println(student);
+		if (counter == 0) {
+			System.out.println("\nThere is no Student with grade less than " + intValueOfGivenGrade);
 		}
 	}
-	
 	
 	//GREATER
 	private static void fetchAndPrintGreater (List<StudentDataObject> listOfStudents, int intValueOfGivenGrade) {
+		int counter = 0;
+
 		for (StudentDataObject student : listOfStudents) {
-			printIfGreater (student, intValueOfGivenGrade);
+			int studentsGrade = getIntFromString (student.getGrade());
+			
+			if (0 < studentsGrade && studentsGrade > intValueOfGivenGrade) {
+				System.out.println(student);
+				counter++;
+			}
+		}
+
+		if (counter == 0) {
+			System.out.println("\nThere is no Student with grade greater than " + intValueOfGivenGrade);
 		}
 	}
-
-	private static void printIfGreater (StudentDataObject student, int intValueOfGivenGrade) {
-		int intValueOfStudentsGrade;
-
-		try {
-			intValueOfStudentsGrade = Integer.parseInt(student.getGrade());
-		} catch (NumberFormatException nfe) {
-			return;
-		}
-
-		if (intValueOfStudentsGrade > intValueOfGivenGrade) {
-			System.out.println(student);
-		}
-	}
-
-
 
 	//EQUAL
 	private static void fetchAndPrintEqual (List<StudentDataObject> listOfStudents, int intValueOfGivenGrade) {
+		int counter = 0;
+		
 		for (StudentDataObject student : listOfStudents) {
-			printIfEqual (student, intValueOfGivenGrade);
+			int studentsGrade = getIntFromString (student.getGrade());
+			
+			if (0 < studentsGrade && studentsGrade == intValueOfGivenGrade) {
+				System.out.println(student);
+				counter++;
+			}
+		}
+		
+		if (counter == 0) {
+			System.out.println("\nThere is no Student with grade equal to " + intValueOfGivenGrade);
 		}
 	}
 
-	private static void printIfEqual (StudentDataObject student, int intValueOfGivenGrade) {
+	private static int getIntFromString (String grade) {
 		int intValueOfStudentsGrade;
-
+		
 		try {
-			intValueOfStudentsGrade = Integer.parseInt(student.getGrade());
+			intValueOfStudentsGrade = Integer.parseInt(grade);
 		} catch (NumberFormatException nfe) {
-			return;
+			return 0;
 		}
-
-		if (intValueOfStudentsGrade == intValueOfGivenGrade) {
-			System.out.println(student);
-		}
+		
+		return intValueOfStudentsGrade;
 	}
 
-	
 	
 	/**
 	 * "filter-name arg1 arg2" - ispisuje ime i prezime svih studenata èije ime poèinje s argumentom arg1, 
@@ -151,16 +153,15 @@ public class Filter {
 	public void filterStudentsByName (String[] inputAsArray, List<StudentDataObject> listOfStudents) {
 		//Input arguments are not OK - Students will not be filtered
 		if (!isInputArgsCorrectName(inputAsArray, listOfStudents)) {
-			
 			return;
 		}
 		
+		String initial = inputAsArray[1].toLowerCase();
+		
 		if (inputAsArray.length == 2) {
-			String initial = inputAsArray[1].toLowerCase();
 			fetchAndPrintByName(listOfStudents, initial);
 			
 		} else {
-			String initial = inputAsArray[1].toLowerCase();
 			String font = inputAsArray[2].toLowerCase();
 			fetchAndPrintByNameInGivenFont(listOfStudents, initial, font);
 		}
@@ -215,18 +216,32 @@ public class Filter {
 	}
 	
 	private static void fetchAndPrintByName(List<StudentDataObject> listOfStudents, String initial) {
+		int counter = 0;
+		
 		for (StudentDataObject student : listOfStudents) {
 			if (student.getName().toLowerCase().startsWith(initial)) {
 				System.out.println(student.getName() + " " + student.getSurname());
+				counter++;
 			}
+		}
+
+		if (counter == 0) {
+			System.out.println("\nThere is no Student whose name starts with " + initial);
 		}
 	}
 	
 	private static void fetchAndPrintByNameInGivenFont(List<StudentDataObject> listOfStudents, String initial, String font) {
+		int counter = 0;
+		
 		for (StudentDataObject student : listOfStudents) {
 			if (student.getName().toLowerCase().startsWith(initial)) {
 				printInGivenFont(student, font);
+				counter++;
 			}
+		}
+		
+		if (counter == 0) {
+			System.out.println("There is no Student whose name starts with: " + initial);
 		}
 	}
 	
